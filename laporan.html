@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laporan - Sistem Absensi Mahasiswa</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="laporan">
+  <aside class="side" id="sidebar"></aside>
+  <div class="main">
+    <header class="nav">
+      <button class="btn" id="menuBtn"><i class="fa fa-bars"></i></button>
+      <h1>Laporan</h1>
+      <span><i class="fa fa-user-circle"></i> Admin</span>
+    </header>
+    <section class="wrap">
+      <div class="card">
+        <div class="noprint"><button class="btn" onclick="window.print()"><i class="fa fa-print"></i> Cetak Laporan</button></div>
+        <h3 style="margin-top:14px">Laporan Kehadiran Mahasiswa</h3>
+        <div class="tw"><table><thead><tr><th>Nama</th><th>NPM</th><th>Kelas</th><th>Hadir</th><th>Izin</th><th>Sakit</th><th>Alpa</th><th>Persentase Kehadiran</th></tr></thead><tbody id="tbody"></tbody></table></div>
+      </div>
+    </section>
+  </div>
+  <div id="toast"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Admin - Sistem Absensi</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="admin">
+  <aside class="side" id="sidebar"></aside>
+  <div class="main">
+    <header class="nav">
+      <button class="btn" id="menuBtn" aria-label="Menu"><i class="fa fa-bars"></i></button>
+      <h1>Panel Admin</h1>
+      <span><i class="fa fa-user-circle"></i></span>
+    </header>
+    <section class="wrap">
+      <div class="tabs noprint">
+        <button class="on" data-tab="ringkasan">Ringkasan</button>
+        <button data-tab="qr">QR Absensi</button>
+        <button data-tab="absensi">Data Absensi</button>
+        <button data-tab="kelas">Manajemen Kelas</button>
+        <button data-tab="pengguna">Pengguna</button>
+      </div>
+
+      <div data-pane="ringkasan"><div class="cards" id="sumCards"></div></div>
+
+      <div data-pane="qr" hidden class="wrap" style="padding:0">
+        <div class="card">
+          <h3>Buat QR Absensi</h3>
+          <form id="qForm" class="grid" novalidate>
+            <div><label for="qTitle">Nama kegiatan</label><input id="qTitle" placeholder="Absensi Kuliah" required></div>
+            <div><label for="qTanggal">Tanggal</label><input type="date" id="qTanggal" required></div>
+            <div><label for="qMulai">Waktu mulai</label><input type="time" id="qMulai" required></div>
+            <div><label for="qSelesai">Waktu berakhir</label><input type="time" id="qSelesai" required></div>
+            <div><label for="qLat">Latitude</label><input id="qLat" inputmode="decimal" placeholder="-5.xxxxxx" required></div>
+            <div><label for="qLng">Longitude</label><input id="qLng" inputmode="decimal" placeholder="105.xxxxxx" required></div>
+            <div><label for="qRadius">Radius (meter)</label><input type="number" id="qRadius" min="10" max="5000" required></div>
+            <div><label for="qLate">Terlambat setelah (menit)</label><input type="number" id="qLate" min="0" value="15"></div>
+            <div><button type="button" class="btn o" id="qGps"><i class="fa fa-location-crosshairs"></i> Pakai lokasi saya</button></div>
+            <div><button class="btn" id="qGen"><i class="fa fa-qrcode"></i> GENERATE QR</button></div>
+          </form>
+        </div>
+        <div class="card" id="qrOut" hidden>
+          <div class="qrbox">
+            <h3 id="qrTitle" style="margin:0"></h3>
+            <div class="qrimg" id="qrImg"></div>
+            <b id="qrUntil"></b>
+            <span class="code" id="qrCode"></span>
+            <button class="btn o s noprint" id="qFull"><i class="fa fa-expand"></i> Layar penuh</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Daftar QR</h3>
+          <div class="tw"><table class="rt"><thead><tr><th>Kegiatan</th><th>Waktu</th><th>Radius</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="qBody"></tbody></table></div>
+        </div>
+      </div>
+
+      <div data-pane="absensi" hidden class="wrap" style="padding:0">
+        <div class="card noprint">
+          <div class="grid">
+            <div><label for="aCari">Cari nama / email</label><input id="aCari"></div>
+            <div><label for="aTanggal">Tanggal</label><input type="date" id="aTanggal"></div>
+            <div><label for="aStatus">Status</label><select id="aStatus"><option value="">Semua</option><option>Hadir</option><option>Terlambat</option></select></div>
+            <div class="row"><button class="btn o" id="aCsv"><i class="fa fa-file-csv"></i> CSV</button><button class="btn o" id="aPrint"><i class="fa fa-print"></i> Cetak</button></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Laporan Absensi</h3>
+          <div class="tw"><table class="rt"><thead><tr><th>Tanggal</th><th>Waktu</th><th>Nama</th><th>Email</th><th>Status</th><th>Jarak</th><th>Akurasi</th><th>Lokasi</th></tr></thead><tbody id="aBody"></tbody></table></div>
+          <p class="muted" id="aInfo" style="margin-top:10px"></p>
+        </div>
+      </div>
+
+      <div data-pane="kelas" hidden>
+        <div class="cards">
+          <a class="card" href="mahasiswa.html"><div class="ico"><i class="fa fa-users"></i></div><div><b style="font-size:1.05rem">Data Mahasiswa</b><small>Tambah, ubah, hapus, cari</small></div></a>
+          <a class="card" href="absensi.html"><div class="ico"><i class="fa fa-clipboard-check"></i></div><div><b style="font-size:1.05rem">Absensi Kelas</b><small>Catat kehadiran per kelas</small></div></a>
+          <a class="card" href="riwayat.html"><div class="ico"><i class="fa fa-clock-rotate-left"></i></div><div><b style="font-size:1.05rem">Riwayat Kelas</b><small>Filter tanggal dan status</small></div></a>
+          <a class="card" href="laporan.html"><div class="ico"><i class="fa fa-file-lines"></i></div><div><b style="font-size:1.05rem">Laporan Kelas</b><small>Rekap dan cetak laporan</small></div></a>
+        </div>
+      </div>
+
+      <div data-pane="pengguna" hidden class="card">
+        <h3>Daftar Pengguna</h3>
+        <div class="tw"><table class="rt"><thead><tr><th>Nama</th><th>Email</th><th>Role</th><th>Status</th><th>Terdaftar</th></tr></thead><tbody id="uBody"></tbody></table></div>
+      </div>
+    </section>
+  </div>
+  <div id="toast"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

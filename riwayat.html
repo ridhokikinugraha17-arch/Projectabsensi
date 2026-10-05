@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riwayat Absensi - Sistem Absensi Mahasiswa</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="riwayat">
+  <aside class="side" id="sidebar"></aside>
+  <div class="main">
+    <header class="nav">
+      <button class="btn" id="menuBtn"><i class="fa fa-bars"></i></button>
+      <h1>Riwayat Absensi</h1>
+      <span><i class="fa fa-user-circle"></i> Admin</span>
+    </header>
+    <section class="wrap">
+      <div class="card">
+        <div class="grid">
+          <div><label>Pencarian</label><input id="cari" placeholder="Cari NPM / nama..."></div>
+          <div><label>Tanggal</label><input type="date" id="fTanggal"></div>
+          <div><label>Status</label><select id="fStatus"><option value="">Semua</option><option>Hadir</option><option>Izin</option><option>Sakit</option><option>Alpa</option></select></div>
+        </div>
+      </div>
+      <div class="card"><div class="tw"><table><thead><tr><th>No</th><th>Tanggal</th><th>NPM</th><th>Nama</th><th>Kelas</th><th>Status</th></tr></thead><tbody id="tbody"></tbody></table></div></div>
+    </section>
+  </div>
+  <div id="toast"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Absen QR - Sistem Absensi</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="attendance">
+  <aside class="side" id="sidebar"></aside>
+  <div class="main">
+    <header class="nav">
+      <button class="btn" id="menuBtn" aria-label="Menu"><i class="fa fa-bars"></i></button>
+      <h1>Absen QR</h1>
+      <span><i class="fa fa-user-circle"></i></span>
+    </header>
+    <section class="wrap">
+      <div class="card">
+        <h3>Scan QR untuk Absen</h3>
+        <p class="muted" id="hint">Waktu sekarang: <span id="clockNow"></span>. Siapkan QR Code absensi dan aktifkan GPS.</p>
+        <br>
+        <button class="btn scan-btn" id="startBtn"><i class="fa fa-camera"></i> SCAN QR UNTUK ABSEN</button>
+        <div id="reader" hidden></div>
+        <ul class="steps" id="steps"></ul>
+        <div class="result" id="result" hidden></div>
+        <details>
+          <summary>Kamera tidak bisa dipakai? Masukkan kode manual</summary>
+          <div class="row" style="margin-top:10px">
+            <input id="manual" placeholder="ATT-2026-XXXXXXXXXX" autocomplete="off" style="flex:1;min-width:180px">
+            <button class="btn" id="manualBtn">Kirim</button>
+          </div>
+        </details>
+      </div>
+    </section>
+  </div>
+  <div id="toast"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+  <script src="js/attendance.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
